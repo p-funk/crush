@@ -242,6 +242,9 @@ type Agent struct {
 
 	// Overrides the context paths for this agent
 	ContextPaths []string `json:"context_paths,omitempty"`
+
+	// The IDs of child agents
+	SubAgents []string `json:"sub_agents,omitempty"`
 }
 
 // Config holds the configuration for crush.
@@ -432,6 +435,7 @@ func (c *Config) SetupAgents() {
 			Description:  "An agent that helps with executing coding tasks.",
 			Model:        SelectedModelTypeLarge,
 			ContextPaths: c.Options.ContextPaths,
+			SubAgents:    []string{"task"},
 			// All tools allowed
 		},
 		"task": {
